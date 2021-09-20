@@ -4,7 +4,7 @@ const app = require('../app')
 describe(' Item Crud Operations ', () => {
 
     it('POST /items -> Should create an item', () => {
-        const newItem = { Name: "Iron Sword", Price: 24 }
+        const newItem = { name: "Iron Sword", price: 24 }
 
         return request(app)
         .post('/items')
@@ -22,10 +22,10 @@ describe(' Item Crud Operations ', () => {
         .expect('Content-Type', /json/)
         .expect(200)
         .then(res => {
-            expect(res.body).toEqual(expect.arrayContaining({
+            expect(res.body).toEqual(expect.arrayContaining(expect.objectContaining({
                 Name: expect.any(String),
                 Price: expect.any(Number)
-            }))
+            })))
         })
     })
 
